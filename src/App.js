@@ -50,7 +50,7 @@ export default function App() {
     inicioVarPT: "",
     finalVarPT: "",
     varsPT: [{ inicio: "", final: "" }],
-varPTActivo: 0,
+    varPTActivo: 0,
     inicioHidratacionPT: "",
     finalHidratacionPT: "",
     inicioST: "",
@@ -58,7 +58,7 @@ varPTActivo: 0,
     inicioVarST: "",
     finalVarST: "",
     varsST: [{ inicio: "", final: "" }],
-varSTActivo: 0,
+    varSTActivo: 0,
     inicioHidratacionST: "",
     finalHidratacionST: "",
     cambios: crearCambiosVacios(),
@@ -82,16 +82,16 @@ varSTActivo: 0,
           registroRecuperado.cambios && registroRecuperado.cambios.length > 0
             ? registroRecuperado.cambios
             : registroVacio.cambios,
-            varsPT:
-  registroRecuperado.varsPT && registroRecuperado.varsPT.length > 0
-    ? registroRecuperado.varsPT
-    : registroVacio.varsPT,
-varPTActivo: registroRecuperado.varPTActivo || 0,
-varsST:
-  registroRecuperado.varsST && registroRecuperado.varsST.length > 0
-    ? registroRecuperado.varsST
-    : registroVacio.varsST,
-varSTActivo: registroRecuperado.varSTActivo || 0,
+        varsPT:
+          registroRecuperado.varsPT && registroRecuperado.varsPT.length > 0
+            ? registroRecuperado.varsPT
+            : registroVacio.varsPT,
+        varPTActivo: registroRecuperado.varPTActivo || 0,
+        varsST:
+          registroRecuperado.varsST && registroRecuperado.varsST.length > 0
+            ? registroRecuperado.varsST
+            : registroVacio.varsST,
+        varSTActivo: registroRecuperado.varSTActivo || 0,
         formacion: {
           titulares:
             registroRecuperado.formacion?.titulares?.length > 0
@@ -505,7 +505,16 @@ varSTActivo: registroRecuperado.varSTActivo || 0,
   };
 
   const limpiarCarga = () => {
-    const nuevoRegistro = crearRegistroVacio();
+    const confirmar = window.confirm(
+      "¿Querés limpiar los datos de esta pantalla? Se conservará el rival cargado."
+    );
+
+    if (!confirmar) return;
+
+    const nuevoRegistro = {
+      ...crearRegistroVacio(),
+      rival: registro.rival,
+    };
 
     setRegistro(nuevoRegistro);
     setFormacionTemporal(nuevoRegistro.formacion);
