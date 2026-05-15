@@ -503,7 +503,6 @@ varSTActivo: registroRecuperado.varSTActivo || 0,
       setMensajeGuardado("");
     }, 2500);
   };
-
   const limpiarCarga = () => {
     const nuevoRegistro = crearRegistroVacio();
 
